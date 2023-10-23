@@ -1,0 +1,27 @@
+.btn {
+  padding: 0.6em 0.6em;
+
+  font-size: 1em;
+  font-weight: 500;
+
+  border-color: transparent;
+  background-color: transparent;
+
+
+  cursor: pointer;
+  transition: color 0.25s transform 0.25s;
+
+  &:hover {
+    color: var(--color_hover);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+}
