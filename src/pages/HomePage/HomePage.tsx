@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Search from '../../components/Search/Search';
-import Section from '../../components/Section/Section';
+import Section from '../../ui/Section/Section';
 
 class HomePage extends Component {
   render = () => (
@@ -8,7 +8,7 @@ class HomePage extends Component {
       <Section>
         <Search />
       </Section>
-      <Section classNames={['section--full-height']}>
+      <Section classNames={['section--full_height']}>
         <div>List</div>
       </Section>
     </>
