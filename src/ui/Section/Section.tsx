@@ -1,12 +1,10 @@
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
+
+import { UIComponent } from '../../types/interface';
+
 import './Section.scss';
 
-interface SectionProps {
-  classNames?: string[];
-  children: ReactNode;
-}
-
-class Section extends Component<SectionProps> {
+class Section extends Component<UIComponent> {
   render = () => {
     const sectionClass = ['section', ...(this.props.classNames || [])].join(' ');
     return (

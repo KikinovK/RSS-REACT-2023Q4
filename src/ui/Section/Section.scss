@@ -1,5 +1,10 @@
 .section {
+  width: 100%;
   padding: 2rem 1rem;
+}
+
+.section--full_height {
+  flex-grow: 1;
 }
 
 .section__in {
