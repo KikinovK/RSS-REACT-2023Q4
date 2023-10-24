@@ -1,5 +1,5 @@
 .btn {
-  padding: 0.6em 0.6em;
+  padding: 0.2em 0.2em;
 
   font-size: 1em;
   font-weight: 500;
@@ -9,7 +9,7 @@
 
 
   cursor: pointer;
-  transition: color 0.25s transform 0.25s;
+  transition: color 0.25s, transform 0.25s;
 
   &:hover {
     color: var(--color_hover);

@@ -2,9 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 2rem;
+  column-gap: 0.8rem;
 }
 
 .search__button {
   width: 4rem;
+  height: 4rem;
+}
+
+.search__input {
+  padding: 0.2rem 1rem;
+
+  font-size: 1.6rem;
+
+  border-radius: 8px;
 }

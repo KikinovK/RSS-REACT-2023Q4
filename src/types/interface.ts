@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface UIComponent {
+export interface UIComponent extends HTMLAttributes<HTMLElement> {
   classNames?: string[];
   children?: ReactNode;
 }
