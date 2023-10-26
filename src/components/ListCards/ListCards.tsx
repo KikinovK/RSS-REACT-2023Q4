@@ -1,8 +1,10 @@
 import { Component, HTMLAttributes } from 'react';
 
-import './ListCards.scss';
 import { IItemData } from '../../services/getItems';
 import Card from '../Card/Card';
+import Loading from '../Loading/Loading';
+
+import './ListCards.scss';
 
 export type TListCardData = IItemData[] | null | [];
 
@@ -19,7 +21,7 @@ class ListCards extends Component<IListCardsProps, IListCardsState> {
     const { data } = this.props;
 
     if (data?.length === 0) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
 
     if (data === null) {
