@@ -1,0 +1,14 @@
+.list_card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  list-style: none;
+
+  margin: 0 auto;
+}
+
+.list_card__item {
+  width: 18rem;
+}
