@@ -1,10 +1,11 @@
 :root {
+  --color_base: #213547;
   --color_hover: #747bff;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color: #213547;
+  color: var(--color_base);
   background-color: #ffffff;
 
   font-synthesis: none;

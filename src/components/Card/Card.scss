@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  border: 2px solid var(--color_base);
+  border-radius: 4px;
+  background-color: #f8f8f8;
+
+}
+
+.card__pic {
+  height: 22rem;
+}
+
+.card__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card__title {
+  --padding_top: .8rem;
+  max-height: calc(3 * 1.2em);
+  padding: 0 .4rem;
+  margin: var(--padding_top) 0;
+
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  text-overflow: ellipsis;
+  // white-space: nowrap;
+
+  overflow: hidden;
+}
