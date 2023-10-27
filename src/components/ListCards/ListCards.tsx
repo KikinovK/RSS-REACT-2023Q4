@@ -25,7 +25,11 @@ class ListCards extends Component<IListCardsProps, IListCardsState> {
     }
 
     if (data === null) {
-      return <div>server's error</div>;
+      return (
+        <div>
+          <h1>server's error, try again later</h1>
+        </div>
+      );
     }
 
     return (
