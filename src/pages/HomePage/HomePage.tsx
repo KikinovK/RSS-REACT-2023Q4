@@ -4,6 +4,7 @@ import Section from '../../ui/Section/Section';
 import fetchData from '../../services/getItems';
 import { paramApiType } from '../../types/interface';
 import ListCards, { TListCardData } from '../../components/ListCards/ListCards';
+import ErrorButton from '../../components/ErrorButton/ErrorButton';
 
 interface IHomePageState {
   dataItems: TListCardData;
@@ -22,7 +23,6 @@ class HomePage extends Component<object, IHomePageState> {
 
   loadData = async (query: string) => {
     this.setState({ dataItems: [] });
-    console.log('query', query);
     this.apiQuery = [
       { key: 'q', value: query ? query : '*' },
       { key: 'media_type', value: 'image' },
@@ -30,7 +30,6 @@ class HomePage extends Component<object, IHomePageState> {
       { key: 'page', value: 1 },
     ];
     const data = await fetchData(this.apiQuery);
-    console.log('loadData', data);
     this.setState({ dataItems: data });
   };
 
@@ -42,6 +41,7 @@ class HomePage extends Component<object, IHomePageState> {
       <Section classNames={['section--full_height']}>
         <ListCards data={this.state.dataItems} />
       </Section>
+      <ErrorButton />
     </>
   );
 }
