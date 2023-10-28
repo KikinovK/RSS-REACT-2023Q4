@@ -10,5 +10,11 @@
 }
 
 .list_card__item {
-  width: 18rem;
+  @media (min-width: 660px) {
+    width: 18rem;
+  }
+
+  @media (max-width: 659px) {
+    width: 100%;
+  }
 }

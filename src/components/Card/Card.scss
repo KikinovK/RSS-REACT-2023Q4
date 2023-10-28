@@ -7,11 +7,16 @@
   border: 2px solid var(--color_base);
   border-radius: 4px;
   background-color: #f8f8f8;
-
 }
 
 .card__pic {
-  height: 22rem;
+  @media (min-width: 660px) {
+    height: 22rem;
+  }
+
+  @media (max-width: 659px) {
+    height: 70vh;
+  }
 }
 
 .card__img {
