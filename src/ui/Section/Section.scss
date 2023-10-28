@@ -1,0 +1,18 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.section--full_height {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.section__in {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-grow: 1;
+}

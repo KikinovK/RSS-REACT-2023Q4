@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.8rem;
+
+  padding: 0 .6rem;
+}
+
+.search__button {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+}
+
+.search__input {
+  flex-shrink: 1;
+  flex-grow: 1;
+
+  width: 12rem;
+  padding: 0.2rem 1rem;
+
+  font-size: 1.6rem;
+
+  border-radius: 8px;
+}
