@@ -1,18 +1,18 @@
 import { Component } from 'react';
 
-import { UIComponent } from '../../types/interface';
+import { IUIComponent } from '../../types/interface';
 
 import './Button.scss';
 
-interface ButtonProps extends UIComponent {
+interface ButtonProps extends IUIComponent {
   onClick: () => void;
 }
 
 class Button extends Component<ButtonProps> {
   render = () => {
-    const sectionClass = ['btn', ...(this.props.classNames || [])].join(' ');
+    const classes = ['btn', ...(this.props.classNames || [])].join(' ');
     return (
-      <button type="button" className={sectionClass} onClick={this.props.onClick}>
+      <button type="button" className={classes} onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );

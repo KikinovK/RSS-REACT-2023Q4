@@ -1,14 +1,14 @@
 import { Component } from 'react';
 
-import { UIComponent } from '../../types/interface';
+import { IUIComponent } from '../../types/interface';
 
 import './Section.scss';
 
-class Section extends Component<UIComponent> {
+class Section extends Component<IUIComponent> {
   render = () => {
-    const sectionClass = ['section', ...(this.props.classNames || [])].join(' ');
+    const classes = ['section', ...(this.props.classNames || [])].join(' ');
     return (
-      <section className={sectionClass}>
+      <section className={classes}>
         <div className="section__in">{this.props.children}</div>
       </section>
     );
