@@ -10,6 +10,7 @@
 }
 
 .card__pic {
+  position: relative;
   @media (min-width: 660px) {
     height: 22rem;
   }
