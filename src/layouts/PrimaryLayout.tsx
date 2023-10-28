@@ -6,7 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 class PrimaryLayout extends Component {
   render = () => (
     <ErrorBoundary>
-      <Outlet />;
+      <Outlet />
     </ErrorBoundary>
   );
 }
