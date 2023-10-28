@@ -1,0 +1,25 @@
+.boundary__title {
+  &:not(:last-child) {
+    margin-bottom: 1.4rem;
+  }
+}
+
+.boundary__caption {
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.boundary__open {
+  text-align: center;
+}
+
+.boundary__info {
+  padding: 1rem;
+  margin: 0 auto;
+
+  text-align: left;
+  white-space: pre-wrap;
+
+  background-color: #c0c0c0;
+}
