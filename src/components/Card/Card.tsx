@@ -14,7 +14,6 @@ class Card extends Component<ICardsProps> {
     return (
       <div className="card">
         <div className="card__pic">
-          {/* <img src={dataItem.links[0].href} alt={dataItem.data[0].title} className="card__img" /> */}
           <ImageLoading
             src={dataItem.links[0].href}
             alt={dataItem.data[0].title}
