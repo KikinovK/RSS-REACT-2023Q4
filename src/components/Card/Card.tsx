@@ -1,30 +1,24 @@
-import { Component, HTMLAttributes } from 'react';
+import { FC } from 'react';
 import { IItemData } from '../../services/getItems';
 
 import './Card.scss';
 import ImageLoading from '../../ui/ImageLoading/ImageLoading';
 
-interface ICardsProps extends HTMLAttributes<HTMLElement> {
+interface ICardsProps {
   dataItem: IItemData;
 }
 
-class Card extends Component<ICardsProps> {
-  render = () => {
-    const { dataItem } = this.props;
-    return (
-      <div className="card">
-        <div className="card__pic">
-          {/* <img src={dataItem.links[0].href} alt={dataItem.data[0].title} className="card__img" /> */}
-          <ImageLoading
-            src={dataItem.links[0].href}
-            alt={dataItem.data[0].title}
-            className="card__img"
-          />
-        </div>
-        <div className="card__title">{dataItem.data[0].title}</div>
-      </div>
-    );
-  };
-}
+const Card: FC<ICardsProps> = ({ dataItem }) => (
+  <div className="card">
+    <div className="card__pic">
+      <ImageLoading
+        src={dataItem.links[0].href}
+        alt={dataItem.data[0].title}
+        className="card__img"
+      />
+    </div>
+    <div className="card__title">{dataItem.data[0].title}</div>
+  </div>
+);
 
 export default Card;

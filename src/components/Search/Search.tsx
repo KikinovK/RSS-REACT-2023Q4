@@ -1,4 +1,4 @@
-import { ChangeEvent, Component, HTMLAttributes } from 'react';
+import { ChangeEvent, FC, HTMLAttributes, useEffect, useState } from 'react';
 
 import Button from '../../ui/Button/Button';
 import SearchIcon from './../../assets/search.svg?react';
@@ -6,50 +6,37 @@ import { getSearchQuery, setSearchQuery } from '../../utils/searchDataUtils';
 
 import './Search.scss';
 
-interface ISearchState {
-  inputValue: string;
-}
-
 interface ISearchProps extends HTMLAttributes<HTMLElement> {
   onInputQuery: (query: string) => void;
 }
 
-class Search extends Component<ISearchProps, ISearchState> {
-  constructor(props: ISearchProps) {
-    super(props);
-    this.state = {
-      inputValue: '',
-    };
-  }
+const Search: FC<ISearchProps> = ({ onInputQuery }) => {
+  const [inputValue, setInputValue] = useState('');
 
-  componentDidMount = () => {
-    this.setState({ inputValue: getSearchQuery() }, () => {
-      this.props.onInputQuery(this.state.inputValue);
-    });
+  useEffect(() => {
+    const firstValue = getSearchQuery();
+
+    setInputValue(firstValue);
+    onInputQuery(firstValue);
+  }, []);
+
+  const hendleClickButton = () => {
+    setSearchQuery(inputValue);
+    onInputQuery(inputValue);
   };
 
-  hendleClickButton = () => {
-    setSearchQuery(this.state.inputValue);
-    this.props.onInputQuery(this.state.inputValue);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
   };
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ inputValue: e.target.value });
-  };
-
-  render = () => (
+  return (
     <div className="search">
-      <input
-        className="search__input"
-        type="text"
-        value={this.state.inputValue}
-        onChange={this.handleChange}
-      />
-      <Button classNames={['search__button']} onClick={this.hendleClickButton}>
+      <input className="search__input" type="text" value={inputValue} onChange={handleChange} />
+      <Button classNames={['search__button']} onClick={hendleClickButton}>
         <SearchIcon className="search__icon" />
       </Button>
     </div>
   );
-}
+};
 
 export default Search;

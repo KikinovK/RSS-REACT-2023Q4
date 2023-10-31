@@ -1,33 +1,25 @@
-import { Component } from 'react';
+import { FC, useState } from 'react';
 
 import Button from '../../ui/Button/Button';
 import ErrorIcon from './../../assets/error.svg?react';
 
 import './ErrorButton.scss';
 
-interface IErrorButtonState {
-  isError: boolean;
-}
+const ErrorButton: FC = () => {
+  const [isError, setIsError] = useState(false);
 
-class ErrorButton extends Component<object, IErrorButtonState> {
-  constructor(props: object) {
-    super(props);
-    this.state = { isError: false };
+  const hendleClickButton = () => {
+    setIsError(true);
+  };
+
+  if (isError) {
+    throw new Error('Test error');
   }
-  hendleClickButton = () => {
-    this.setState({ isError: true });
-  };
-
-  render = () => {
-    if (this.state.isError) {
-      throw new Error('Test error');
-    }
-    return (
-      <Button classNames={['error__button']} onClick={this.hendleClickButton}>
-        <ErrorIcon className="error__icon" />
-      </Button>
-    );
-  };
-}
+  return (
+    <Button classNames={['error__button']} onClick={hendleClickButton}>
+      <ErrorIcon className="error__icon" />
+    </Button>
+  );
+};
 
 export default ErrorButton;

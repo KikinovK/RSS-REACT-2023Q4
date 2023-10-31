@@ -1,8 +1,7 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
 export interface IUIComponent extends HTMLAttributes<HTMLElement> {
   classNames?: string[];
-  children?: ReactNode;
 }
 
 export interface paramApiType {
