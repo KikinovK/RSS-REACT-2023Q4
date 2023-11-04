@@ -1,4 +1,5 @@
 import { paramApiType } from '../types/interface';
+import generateQueryString from '../utils/generateQueryString';
 
 export interface IItemData {
   data: {
@@ -22,12 +23,10 @@ interface IData {
 }
 
 const baseUrl = 'https://images-api.nasa.gov';
-const generateQueryString = (queryParam: paramApiType[] = []) =>
-  queryParam.length ? `?${queryParam.map((elem) => `${elem.key}=${elem.value}`).join('&')}` : '';
 
 const fetchData = async (apiQuery: paramApiType[]): Promise<IItemData[] | null> => {
   try {
-    const response = await fetch(`${baseUrl}/search${generateQueryString(apiQuery)}`);
+    const response = await fetch(`${baseUrl}/search?${generateQueryString(apiQuery)}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
