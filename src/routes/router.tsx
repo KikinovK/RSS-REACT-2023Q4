@@ -10,10 +10,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-      },
-      {
-        path: '/:lineQuery',
-        element: <HomePage />,
         loader: loader,
       },
     ],

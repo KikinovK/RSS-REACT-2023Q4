@@ -1,6 +1,3 @@
-import { paramApiType } from '../types/interface';
-import generateQueryString from '../utils/generateQueryString';
-
 export interface IItemData {
   data: {
     date_created: string;
@@ -32,9 +29,9 @@ export interface IReturnData {
 
 const baseUrl = 'https://images-api.nasa.gov';
 
-const fetchData = async (apiQuery: paramApiType[]): Promise<IReturnData | null> => {
+const fetchData = async (apiQuery: string): Promise<IReturnData | null> => {
   try {
-    const response = await fetch(`${baseUrl}/search?${generateQueryString(apiQuery)}`);
+    const response = await fetch(`${baseUrl}/search?${apiQuery}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

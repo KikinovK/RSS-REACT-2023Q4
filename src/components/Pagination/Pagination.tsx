@@ -20,7 +20,7 @@ const changeValueToApiQuery = (
 ) => apiQuery.map((item) => (item.key === keyName ? { ...item, value: newValue } : item));
 
 const getPathLink = (numberPage: number, apiQuery: paramApiType[]): string =>
-  `/${generateQueryString(changeValueToApiQuery(numberPage, 'page', apiQuery))}`;
+  `/?${generateQueryString(changeValueToApiQuery(numberPage, 'page', apiQuery))}`;
 
 const Pagination: FC<IPaginationProps> = ({ totalPages, apiQuery }) => {
   const currentPage = apiQuery.filter((item) => item.key === 'page')[0].value as number;
