@@ -1,0 +1,41 @@
+.paging {
+  padding: 2rem;
+
+  font-size: 1.5rem;
+}
+
+.paging__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+
+  list-style: none;
+}
+
+.paging__link {
+  display: block;
+
+  width: 2em;
+  height: 3em;
+  padding: 0.6rem;
+
+  color: var(--color_base);
+
+  transition: color 0.25s, transform 0.25s;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &.paging__link--disabled {
+    color: var(--color_disabled);
+    pointer-events: none;
+  }
+}
+
+
+
+.paging__icon {
+  fill: currentColor;
+}

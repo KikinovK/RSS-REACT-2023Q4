@@ -19,19 +19,30 @@ export interface IItemData {
 interface IData {
   collection: {
     items: IItemData[];
+    metadata: {
+      total_hits: number;
+    };
   };
+}
+
+export interface IReturnData {
+  items: IItemData[];
+  totalHits: number;
 }
 
 const baseUrl = 'https://images-api.nasa.gov';
 
-const fetchData = async (apiQuery: paramApiType[]): Promise<IItemData[] | null> => {
+const fetchData = async (apiQuery: paramApiType[]): Promise<IReturnData | null> => {
   try {
     const response = await fetch(`${baseUrl}/search?${generateQueryString(apiQuery)}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data: IData = await response.json();
-    return data.collection.items;
+    return {
+      items: data.collection.items,
+      totalHits: data.collection.metadata.total_hits,
+    };
   } catch (error) {
     console.error('Error:', error);
     return null;
