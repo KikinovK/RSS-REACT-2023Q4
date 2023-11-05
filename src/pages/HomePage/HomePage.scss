@@ -1,0 +1,12 @@
+.row {
+  display: flex;
+  align-items: start;
+}
+
+.col {
+  width: 50%;
+}
+
+.col--full_width {
+  flex-grow: 1;
+}

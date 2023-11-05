@@ -10,9 +10,10 @@ export type TListCardData = IItemData[] | null | undefined;
 
 interface IListCardsProps {
   data: TListCardData;
+  onClickItem: (numItem: number) => void;
 }
 
-const ListCards: FC<IListCardsProps> = ({ data }) => {
+const ListCards: FC<IListCardsProps> = ({ data, onClickItem }) => {
   if (data?.length === 0) {
     return (
       <div>
@@ -35,8 +36,14 @@ const ListCards: FC<IListCardsProps> = ({ data }) => {
 
   return (
     <ul className="list_card">
-      {data.map((item) => (
-        <li className="list_card__item" key={item.href}>
+      {data.map((item, index) => (
+        <li
+          className="list_card__item"
+          key={item.href}
+          onClick={() => {
+            onClickItem(index + 1);
+          }}
+        >
           <Card dataItem={item} />
         </li>
       ))}

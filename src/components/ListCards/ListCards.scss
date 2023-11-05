@@ -10,6 +10,8 @@
 }
 
 .list_card__item {
+  cursor: pointer;
+
   @media (min-width: 660px) {
     width: 18rem;
   }

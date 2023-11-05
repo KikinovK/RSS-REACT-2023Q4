@@ -12,6 +12,9 @@ import generateApiQuery from '../../utils/generateApiQuery';
 import Pagination from '../../components/Pagination/Pagination';
 import constants from '../../constants/constants';
 import filterQueryParams from '../../utils/filterQueryParams';
+import Details from '../../components/Details/Details';
+
+import './HomePage.scss';
 
 export interface ILoaderParams {
   lineQuery: string;
@@ -28,9 +31,11 @@ export const loader = async (args: LoaderFunctionArgs): Promise<IReturnData | nu
 };
 
 const HomePage = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dataLoad = useLoaderData() as IReturnData | null;
   const navigate = useNavigate();
+
+  const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
 
   const changeQuery = async (query: string) => {
     const apiQuery = generateApiQuery({ q: query });
@@ -47,13 +52,33 @@ const HomePage = () => {
     }
   }, []);
 
+  const handleClickCard = (numItem: number = 0) => {
+    const currentParams = Object.fromEntries(searchParams.entries());
+    currentParams['details'] = numItem.toString();
+    setSearchParams(currentParams);
+  };
+
+  const closeDetails = () => {
+    searchParams.delete('details');
+    setSearchParams(searchParams);
+  };
+
   return (
     <>
       <Section>
         <Search onInputQuery={changeQuery} firstValue={getFirstValue()} />
       </Section>
       <Section classNames={['section--full_height']}>
-        <ListCards data={dataLoad?.items} />
+        <div className="row">
+          <div className="col col--full_width">
+            <ListCards data={dataLoad?.items} onClickItem={handleClickCard} />
+          </div>
+          {dataLoad && numItem && (
+            <div className="col">
+              <Details data={dataLoad.items[numItem - 1]} onClose={closeDetails} />
+            </div>
+          )}
+        </div>
         {dataLoad && searchParams.size && (
           <Pagination
             totalPages={Math.ceil(dataLoad.totalHits / constants.PAGE_SIZE)}
