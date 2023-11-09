@@ -1,0 +1,44 @@
+.select {
+  padding: .6em 2em .6em .6em;
+
+  font-size: 1em;
+  text-align: right;
+
+  border: none;
+  cursor: pointer;
+  appearance: none;
+
+  &:hover + .select__icon {
+    color: var(--color_hover);
+  }
+
+  &:active + .select__icon {
+    transform: scale(.9);
+  }
+}
+
+.select__wrap {
+  position: relative;
+}
+
+.select__icon {
+  position: absolute;
+  top: .6em;
+  right: .6em;
+
+  display: block;
+  height: 1em;
+  width: 1em;
+
+  pointer-events: none;
+
+  transition: color 0.25s, transform 0.25s;
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.select__icon--up {
+  transform: rotate(180deg);
+}
