@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import PrevIcon from './../../assets/prev.svg?react';
 import NextIcon from './../../assets/next.svg?react';
@@ -7,6 +7,7 @@ import { paramApiType } from '../../types/interface';
 import generateQueryString from '../../utils/generateQueryString';
 
 import './Pagination.scss';
+import Select from '../../ui/Select/Select';
 
 interface IPaginationProps {
   totalPages: number;
@@ -23,7 +24,16 @@ const getPathLink = (numberPage: number, apiQuery: paramApiType[]): string =>
   `/?${generateQueryString(changeValueToApiQuery(numberPage, 'page', apiQuery))}`;
 
 const Pagination: FC<IPaginationProps> = ({ totalPages, apiQuery }) => {
+  const navigate = useNavigate();
+
   const currentPage = apiQuery.filter((item) => item.key === 'page')[0].value as number;
+
+  const handleSelected = (sizePage: string) => {
+    const apiQueryFirstPage = changeValueToApiQuery(1, 'page', apiQuery);
+    navigate(
+      `/?${generateQueryString(changeValueToApiQuery(sizePage, 'page_size', apiQueryFirstPage))}`
+    );
+  };
 
   if (currentPage > totalPages && currentPage < 1) {
     return null;
@@ -52,6 +62,18 @@ const Pagination: FC<IPaginationProps> = ({ totalPages, apiQuery }) => {
           >
             <NextIcon className="paging__icon" />
           </Link>
+        </li>
+        <li className="paging__item">
+          <Select
+            defaultValue={`${apiQuery.filter((item) => item.key === 'page_size')[0].value}`}
+            classNames={['paging__size_page']}
+            onSelected={handleSelected}
+            options={[
+              { label: '4', value: '4' },
+              { label: '8', value: '8' },
+              { label: '12', value: '12' },
+            ]}
+          />
         </li>
       </ul>
     </div>
