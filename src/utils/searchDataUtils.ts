@@ -1,7 +1,7 @@
-export const setSearchQuery = (query: string): void => {
+export const setSearchQueryToLocalStorage = (query: string): void => {
   localStorage.setItem('searchQuery', query);
 };
 
-export const getSearchQuery = (): string => {
+export const getSearchQueryFromLocalStorage = (): string => {
   return localStorage.getItem('searchQuery') || '';
 };

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
+import { LoaderFunctionArgs, useLoaderData, useNavigate, useSearchParams } from 'react-router-dom';
+
 import Search from '../../components/Search/Search';
 import Section from '../../ui/Section/Section';
 import fetchData, { IReturnData } from '../../services/getItems';
 import ListCards from '../../components/ListCards/ListCards';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
-import { LoaderFunctionArgs, useLoaderData, useNavigate, useSearchParams } from 'react-router-dom';
-import { getSearchQuery } from '../../utils/searchDataUtils';
 import parseQueryString from '../../utils/parseQueryString';
 import generateQueryString from '../../utils/generateQueryString';
 import generateApiQuery from '../../utils/generateApiQuery';
@@ -13,6 +13,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import constants from '../../constants/constants';
 import filterQueryParams from '../../utils/filterQueryParams';
 import Details from '../../components/Details/Details';
+import { useSearchQuery } from '../../components/SearchQueryProvider/SearchQueryProvider';
 
 import './HomePage.scss';
 
@@ -32,25 +33,27 @@ export const loader = async (args: LoaderFunctionArgs): Promise<IReturnData | nu
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { searchQuery, setSearchQuery } = useSearchQuery();
   const dataLoad = useLoaderData() as IReturnData | null;
   const navigate = useNavigate();
 
   const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
 
-  const changeQuery = async (query: string) => {
-    const apiQuery = generateApiQuery({ q: query });
-    navigate(`/?${generateQueryString(apiQuery)}`);
-  };
-
-  const getFirstValue = (): string => searchParams.get('q') || getSearchQuery();
-
   useEffect(() => {
     if (!searchParams.size) {
-      const query = getSearchQuery();
-      const apiQuery = generateApiQuery({ q: query });
+      const apiQuery = generateApiQuery({ q: searchQuery });
       navigate(`/?${generateQueryString(apiQuery)}`);
     }
   }, []);
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get('q') || searchQuery);
+  }, [searchParams]);
+
+  useEffect(() => {
+    const apiQuery = generateApiQuery({ q: searchQuery });
+    navigate(`/?${generateQueryString(apiQuery)}`);
+  }, [searchQuery]);
 
   const handleClickCard = (numItem: number = 0) => {
     const currentParams = Object.fromEntries(searchParams.entries());
@@ -66,7 +69,7 @@ const HomePage = () => {
   return (
     <>
       <Section>
-        <Search onInputQuery={changeQuery} firstValue={getFirstValue()} />
+        <Search />
       </Section>
       <Section classNames={['section--full_height']}>
         <div className="row">
