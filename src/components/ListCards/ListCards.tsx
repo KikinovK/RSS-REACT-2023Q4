@@ -3,28 +3,18 @@ import { FC } from 'react';
 import { IItemData } from '../../services/getItems';
 import Card from '../Card/Card';
 import Loading from '../Loading/Loading';
+import { useData } from '../DataProvider/DataProvider';
 
 import './ListCards.scss';
 
 export type TListCardData = IItemData[] | null | undefined;
 
 interface IListCardsProps {
-  data: TListCardData;
   onClickItem: (numItem: number) => void;
 }
 
-const ListCards: FC<IListCardsProps> = ({ data, onClickItem }) => {
-  if (data?.length === 0) {
-    return (
-      <div>
-        <h1>No results...</h1>
-      </div>
-    );
-  }
-
-  if (data === undefined) {
-    return <Loading />;
-  }
+const ListCards: FC<IListCardsProps> = ({ onClickItem }) => {
+  const { data } = useData();
 
   if (data === null) {
     return (
@@ -34,9 +24,23 @@ const ListCards: FC<IListCardsProps> = ({ data, onClickItem }) => {
     );
   }
 
+  const { items } = data;
+
+  if (items?.length === 0) {
+    return (
+      <div>
+        <h1>No results...</h1>
+      </div>
+    );
+  }
+
+  if (items === undefined) {
+    return <Loading />;
+  }
+
   return (
     <ul className="list_card">
-      {data.map((item, index) => (
+      {items.map((item, index) => (
         <li
           className="list_card__item"
           key={item.href}

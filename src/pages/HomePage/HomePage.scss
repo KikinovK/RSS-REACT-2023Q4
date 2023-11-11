@@ -3,10 +3,11 @@
   align-items: start;
 }
 
-.col {
-  width: 50%;
-}
-
 .col--full_width {
   flex-grow: 1;
+}
+
+.col--min_width {
+  flex-shrink: 1;
+  max-width: 50%;
 }
