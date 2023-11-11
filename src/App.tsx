@@ -5,10 +5,13 @@ import { SearchQueryProvider } from './components/SearchQueryProvider/SearchQuer
 import router from './routes/router';
 
 import './App.scss';
+import { DataProvider } from './components/DataProvider/DataProvider';
 
 const App: FC = () => (
   <SearchQueryProvider>
-    <RouterProvider router={router} />;
+    <DataProvider>
+      <RouterProvider router={router} />;
+    </DataProvider>
   </SearchQueryProvider>
 );
 
