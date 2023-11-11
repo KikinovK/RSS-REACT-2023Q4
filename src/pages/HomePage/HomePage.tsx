@@ -89,7 +89,6 @@ const HomePage = () => {
         </div>
         {dataLoad && searchParams.size && (
           <Pagination
-            totalPages={Math.ceil(dataLoad.totalHits / constants.PAGE_SIZE)}
             apiQuery={parseQueryString(
               filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
             )}
