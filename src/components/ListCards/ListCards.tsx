@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { IItemData } from '../../services/getItems';
 import Card from '../Card/Card';
-import Loading from '../Loading/Loading';
 import { useData } from '../DataProvider/DataProvider';
 
 import './ListCards.scss';
@@ -19,7 +18,7 @@ const ListCards: FC<IListCardsProps> = ({ onClickItem }) => {
   if (data === null) {
     return (
       <div>
-        <h1>server's error, try again later</h1>
+        <h1>server`s error, try again later</h1>
       </div>
     );
   }
@@ -32,10 +31,6 @@ const ListCards: FC<IListCardsProps> = ({ onClickItem }) => {
         <h1>No results...</h1>
       </div>
     );
-  }
-
-  if (items === undefined) {
-    return <Loading />;
   }
 
   return (
