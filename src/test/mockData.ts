@@ -1,4 +1,4 @@
-const mosk = {
+const mockData = {
   data: {
     items: [
       {
@@ -106,4 +106,4 @@ const mosk = {
   },
 };
 
-export default mosk;
+export default mockData;

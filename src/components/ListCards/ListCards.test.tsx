@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import ListCards from './ListCards';
-import mosk from '../../test/mosk';
+import mockData from '../../test/mockData';
 
 const mocks = vi.hoisted(() => {
   return {
@@ -18,7 +18,7 @@ vi.mock('../DataProvider/DataProvider', () => {
 
 describe('ListCards Component', () => {
   it('renders the specified number of cards', () => {
-    const { data } = mosk;
+    const { data } = mockData;
 
     mocks.useData.mockReturnValue({ data });
 
@@ -53,7 +53,7 @@ describe('ListCards Component', () => {
   });
 
   it('calls onClickItem with the right argument when an item is clicked', () => {
-    const { data } = mosk;
+    const { data } = mockData;
 
     mocks.useData.mockReturnValue({ data });
 
