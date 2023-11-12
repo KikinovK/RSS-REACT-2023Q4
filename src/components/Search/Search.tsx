@@ -1,27 +1,28 @@
-import { ChangeEvent, FC, HTMLAttributes, useState } from 'react';
+import { ChangeEvent, FC, HTMLAttributes, useEffect, useState } from 'react';
 
 import Button from '../../ui/Button/Button';
 import SearchIcon from './../../assets/search.svg?react';
-import { setSearchQuery } from '../../utils/searchDataUtils';
+import { useSearchQuery } from '../SearchQueryProvider/SearchQueryProvider';
 
 import './Search.scss';
 
-interface ISearchProps extends HTMLAttributes<HTMLElement> {
-  onInputQuery: (query: string) => void;
-  firstValue: string;
-}
+interface ISearchProps extends HTMLAttributes<HTMLElement> {}
 
-const Search: FC<ISearchProps> = ({ onInputQuery, firstValue }) => {
-  const [inputValue, setInputValue] = useState(firstValue);
+const Search: FC<ISearchProps> = () => {
+  const { searchQuery, setSearchQuery } = useSearchQuery();
+  const [inputValue, setInputValue] = useState('');
 
   const hendleClickButton = () => {
     setSearchQuery(inputValue);
-    onInputQuery(inputValue);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+
+  useEffect(() => {
+    setInputValue(searchQuery);
+  }, [searchQuery]);
 
   return (
     <div className="search">

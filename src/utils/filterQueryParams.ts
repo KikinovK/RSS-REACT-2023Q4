@@ -1,10 +1,13 @@
-const filterQueryParams = (params: URLSearchParams, keys: string[]): string => {
+const filterQueryParams = (params: URLSearchParams, keys: string[]): URLSearchParams => {
+  const filteredParams = new URLSearchParams();
+
   for (const key of params.keys()) {
-    if (!keys.includes(key)) {
-      params.delete(key);
+    if (keys.includes(key)) {
+      filteredParams.append(key, params.get(key) || '');
     }
   }
-  return params.toString();
+
+  return filteredParams;
 };
 
 export default filterQueryParams;
