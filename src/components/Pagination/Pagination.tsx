@@ -27,8 +27,8 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
   const { data } = useData();
   const navigate = useNavigate();
 
-  const currentPage = apiQuery.filter((item) => item.key === 'page')[0].value as number;
-  const sizePage = apiQuery.filter((item) => item.key === 'page_size')[0].value as number;
+  const currentPage = (apiQuery.filter((item) => item.key === 'page')[0]?.value as number) || 1;
+  const sizePage = (apiQuery.filter((item) => item.key === 'page_size')[0]?.value as number) || 4;
 
   const handleSelected = (sizePage: string) => {
     const apiQueryFirstPage = changeValueToApiQuery(1, 'page', apiQuery);
@@ -72,7 +72,9 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
           </li>
           <li className="paging__item">
             <Select
-              defaultValue={`${apiQuery.filter((item) => item.key === 'page_size')[0].value}`}
+              defaultValue={`${
+                apiQuery.filter((item) => item.key === 'page_size')[0]?.value || sizePage
+              }`}
               classNames={['paging__size_page']}
               onSelected={handleSelected}
               options={[

@@ -60,10 +60,12 @@ const HomePage = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    setSearchParams((prevSearchParams) => {
-      prevSearchParams.set('q', searchQuery);
-      return filterQueryParams(prevSearchParams, constants.KEYS_PARAM);
-    });
+    if (searchParams.size) {
+      setSearchParams((prevSearchParams) => {
+        prevSearchParams.set('q', searchQuery);
+        return filterQueryParams(prevSearchParams, constants.KEYS_PARAM);
+      });
+    }
   }, [searchQuery]);
 
   const handleClickCard = (numItem: number = 0) => {
