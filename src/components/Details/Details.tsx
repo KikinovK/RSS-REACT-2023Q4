@@ -7,33 +7,17 @@ import './Details.scss';
 import { useData } from '../DataProvider/DataProvider';
 import { useSearchParams } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import formattedDate from '../../utils/formattedDate';
 
 interface IDetailsProps {}
-
-const formattedDate = (dateString: string): string => {
-  const dateObject = new Date(dateString);
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    timeZoneName: 'short',
-  };
-
-  return dateObject.toLocaleDateString('en-US', options);
-};
 
 const Details: FC<IDetailsProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { data } = useData();
 
   const handleClose = () => {
-    setSearchParams((prevSearchParams) => {
-      searchParams.delete('details');
-      return prevSearchParams;
-    });
+    searchParams.delete('details');
+    setSearchParams(searchParams);
   };
 
   const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
@@ -62,7 +46,7 @@ const Details: FC<IDetailsProps> = () => {
       {item.data[0].photographer && <h4>Photographer: {item.data[0].photographer}</h4>}
       <h5>Date: {formattedDate(item.data[0].date_created)}</h5>
       <p>{item.data[0].description}</p>
-      <Button classNames={['details__close']} onClick={handleClose}>
+      <Button classNames={['details__close']} onClick={handleClose} aria-label="close">
         <CloseIcon />
       </Button>
     </div>
