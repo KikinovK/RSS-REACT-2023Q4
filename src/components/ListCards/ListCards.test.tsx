@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import ListCards from './ListCards';
+import mosk from '../../test/mosk';
 
 const mocks = vi.hoisted(() => {
   return {
@@ -17,103 +18,7 @@ vi.mock('../DataProvider/DataProvider', () => {
 
 describe('ListCards Component', () => {
   it('renders the specified number of cards', () => {
-    const data = {
-      items: [
-        {
-          href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-004/collection.json',
-          data: [
-            {
-              center: 'ARC',
-              title: 'ARC-2012-ACD12-0026-004',
-              photographer: 'Eric James',
-              keywords: ['N-232', 'Sustainability Base', 'Aerial'],
-              nasa_id: 'ARC-2012-ACD12-0026-004',
-              media_type: 'image',
-              date_created: '2012-02-03T15:51:15Z',
-              description:
-                'Aerial view of newly completed N-232 Sustainability Base at the NASA Ames Research Center, Moffett Field, CA.',
-            },
-          ],
-          links: [
-            {
-              href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-004/ARC-2012-ACD12-0026-004~thumb.jpg',
-              rel: 'preview',
-              render: 'image',
-            },
-          ],
-        },
-        {
-          href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-006/collection.json',
-          data: [
-            {
-              center: 'ARC',
-              title: 'ARC-2012-ACD12-0026-006',
-              photographer: 'Eric James',
-              keywords: ['N-232', 'Sustainability Base', 'Aerial'],
-              nasa_id: 'ARC-2012-ACD12-0026-006',
-              media_type: 'image',
-              date_created: '2012-02-03T15:51:38Z',
-              description:
-                'Aerial view of newly completed N-232 Sustainability Base at the NASA Ames Research Center, Moffett Field, CA.',
-            },
-          ],
-          links: [
-            {
-              href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-006/ARC-2012-ACD12-0026-006~thumb.jpg',
-              rel: 'preview',
-              render: 'image',
-            },
-          ],
-        },
-        {
-          href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-008/collection.json',
-          data: [
-            {
-              center: 'ARC',
-              title: 'ARC-2012-ACD12-0026-008',
-              photographer: 'Eric James',
-              keywords: ['N-232', 'Sustainability Base', 'Aerial'],
-              nasa_id: 'ARC-2012-ACD12-0026-008',
-              media_type: 'image',
-              date_created: '2012-02-03T15:51:55Z',
-              description:
-                'Aerial view of newly completed N-232 Sustainability Base at the NASA Ames Research Center, Moffett Field, CA.',
-            },
-          ],
-          links: [
-            {
-              href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-008/ARC-2012-ACD12-0026-008~thumb.jpg',
-              rel: 'preview',
-              render: 'image',
-            },
-          ],
-        },
-        {
-          href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-009/collection.json',
-          data: [
-            {
-              center: 'ARC',
-              title: 'ARC-2012-ACD12-0026-009',
-              photographer: 'Eric James',
-              keywords: ['N-232', 'Sustainability Base', 'Aerial'],
-              nasa_id: 'ARC-2012-ACD12-0026-009',
-              media_type: 'image',
-              date_created: '2012-02-03T15:51:14Z',
-              description:
-                'Aerial view of newly completed N-232 Sustainability Base at the NASA Ames Research Center, Moffett Field, CA.',
-            },
-          ],
-          links: [
-            {
-              href: 'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-009/ARC-2012-ACD12-0026-009~thumb.jpg',
-              rel: 'preview',
-              render: 'image',
-            },
-          ],
-        },
-      ],
-      totalHits: 200,
-    };
+    const { data } = mosk;
 
     mocks.useData.mockReturnValue({ data });
 
@@ -145,5 +50,19 @@ describe('ListCards Component', () => {
 
     const message = screen.getByText('server`s error, try again later');
     expect(message).toBeInTheDocument();
+  });
+
+  it('calls onClickItem with the right argument when an item is clicked', () => {
+    const { data } = mosk;
+
+    mocks.useData.mockReturnValue({ data });
+
+    const onClickItem = vi.fn();
+    const { getAllByRole } = render(<ListCards onClickItem={onClickItem} />);
+
+    const listItems = getAllByRole('listitem');
+    fireEvent.click(listItems[0]);
+
+    expect(onClickItem).toHaveBeenCalledWith(1);
   });
 });

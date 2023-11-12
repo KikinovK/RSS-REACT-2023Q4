@@ -5,7 +5,7 @@ import Loading from '../../components/Loading/Loading';
 
 interface IImageLoadingProps extends HTMLAttributes<HTMLImageElement> {
   src: string;
-  alt: string;
+  alt?: string;
 }
 
 const ImageLoading: FC<IImageLoadingProps> = ({ src, alt, ...restProps }) => {
@@ -19,7 +19,7 @@ const ImageLoading: FC<IImageLoadingProps> = ({ src, alt, ...restProps }) => {
     <>
       {isLoaded ? <img src={src} alt={alt} {...restProps} /> : <Loading />}
       {!isLoaded && (
-        <img src={src} alt={alt} style={{ display: 'none' }} onLoad={handleImageLoad} />
+        <img src={src} alt="loading image" style={{ display: 'none' }} onLoad={handleImageLoad} />
       )}
     </>
   );
