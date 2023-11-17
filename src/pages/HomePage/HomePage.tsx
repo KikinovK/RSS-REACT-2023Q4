@@ -12,8 +12,8 @@ import Search from '../../components/Search/Search';
 import ListCards from '../../components/ListCards/ListCards';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
 import Pagination from '../../components/Pagination/Pagination';
-import { useData } from '../../components/DataProvider/DataProvider';
 import Section from '../../ui/Section/Section';
+
 import fetchData, { IReturnData } from '../../services/getItems';
 import parseQueryString from '../../utils/parseQueryString';
 import generateQueryString from '../../utils/generateQueryString';
@@ -22,6 +22,7 @@ import filterQueryParams from '../../utils/filterQueryParams';
 import constants from '../../constants/constants';
 import { TRootState } from '../../store/store';
 import { setSearchQuery } from '../../reducers/searchReducer';
+import { setData } from '../../reducers/dataReducer';
 
 import './HomePage.scss';
 
@@ -42,13 +43,12 @@ export const loader = async (args: LoaderFunctionArgs): Promise<IReturnData | nu
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dataLoad = useLoaderData() as IReturnData | null;
-  const { setData } = useData();
   const navigate = useNavigate();
   const searchQuery = useSelector((state: TRootState) => state.search.searchQuery);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setData(dataLoad);
+    dispatch(setData(dataLoad));
   }, [dataLoad]);
 
   useEffect(() => {

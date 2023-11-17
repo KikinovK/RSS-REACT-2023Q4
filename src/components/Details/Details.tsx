@@ -1,19 +1,22 @@
 import { FC } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import Loading from '../Loading/Loading';
+import ImageLoading from '../../ui/ImageLoading/ImageLoading';
 import Button from '../../ui/Button/Button';
 import CloseIcon from './../../assets/close.svg?react';
-import ImageLoading from '../../ui/ImageLoading/ImageLoading';
+
+import formattedDate from '../../utils/formattedDate';
+import { TRootState } from '../../store/store';
 
 import './Details.scss';
-import { useData } from '../DataProvider/DataProvider';
-import { useSearchParams } from 'react-router-dom';
-import Loading from '../Loading/Loading';
-import formattedDate from '../../utils/formattedDate';
 
 interface IDetailsProps {}
 
 const Details: FC<IDetailsProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data } = useData();
+  const data = useSelector((state: TRootState) => state.data.data);
 
   const handleClose = () => {
     searchParams.delete('details');

@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 
 import { IItemData } from '../../services/getItems';
 import Card from '../Card/Card';
-import { useData } from '../DataProvider/DataProvider';
+
+import { TRootState } from '../../store/store';
 
 import './ListCards.scss';
 
@@ -13,7 +15,7 @@ interface IListCardsProps {
 }
 
 const ListCards: FC<IListCardsProps> = ({ onClickItem }) => {
-  const { data } = useData();
+  const data = useSelector((state: TRootState) => state.data.data);
 
   if (data === null) {
     return (
