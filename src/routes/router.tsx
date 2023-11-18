@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import HomePage, { loader } from '../pages/HomePage/HomePage';
+import HomePage from '../pages/HomePage/HomePage';
 import PrimaryLayout from '../layouts/PrimaryLayout';
 import Details from '../components/Details/Details';
 
@@ -11,7 +11,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-        loader: loader,
         children: [
           {
             index: true,
