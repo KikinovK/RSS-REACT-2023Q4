@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { IItemData } from '../../services/getItems';
 import Card from '../Card/Card';
 
 import { TRootState } from '../../store/store';
+import { IItemData } from '../../types/interface';
 
 import './ListCards.scss';
 

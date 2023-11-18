@@ -1,8 +1,10 @@
 import { FC } from 'react';
-import { IItemData } from '../../services/getItems';
+
+import ImageLoading from '../../ui/ImageLoading/ImageLoading';
+
+import { IItemData } from '../../types/interface';
 
 import './Card.scss';
-import ImageLoading from '../../ui/ImageLoading/ImageLoading';
 
 interface ICardsProps {
   dataItem: IItemData;

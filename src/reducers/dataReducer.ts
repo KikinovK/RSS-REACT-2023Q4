@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IReturnData } from '../services/getItems';
+
+import { IReturnData } from '../types/interface';
 
 interface IDataState {
   data: IReturnData | null;
