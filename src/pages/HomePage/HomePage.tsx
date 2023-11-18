@@ -19,6 +19,7 @@ import { setData } from '../../reducers/dataReducer';
 
 import './HomePage.scss';
 import { useGetItemsQuery } from '../../reducers/itemsApi';
+import Loading from '../../components/Loading/Loading';
 
 export interface ILoaderParams {
   lineQuery: string;
@@ -26,7 +27,7 @@ export interface ILoaderParams {
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data } = useGetItemsQuery(
+  const { data, isLoading, isError } = useGetItemsQuery(
     filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
   );
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ const HomePage = () => {
     if (searchParams.size) {
       setSearchParams((prevSearchParams) => {
         prevSearchParams.set('q', searchQuery);
-        return filterQueryParams(prevSearchParams, constants.KEYS_PARAM);
+        return prevSearchParams;
       });
     }
   }, [searchQuery]);
@@ -69,6 +70,18 @@ const HomePage = () => {
       return prevSearchParams;
     });
   };
+
+  if (isError) {
+    return (
+      <div>
+        <h1>server`s error, try again later</h1>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
