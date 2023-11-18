@@ -15,6 +15,7 @@ export interface IItemData {
     description: string;
     photographer: string;
     title: string;
+    nasa_id: string;
   }[];
   href: string;
   links: {
@@ -36,4 +37,12 @@ export interface IData {
 export interface IReturnData {
   items: IItemData[];
   totalHits: number;
+}
+
+export interface IDetail {
+  collection: {
+    items: {
+      href: string;
+    }[];
+  };
 }

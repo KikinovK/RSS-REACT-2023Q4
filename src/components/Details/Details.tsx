@@ -11,6 +11,7 @@ import formattedDate from '../../utils/formattedDate';
 import { TRootState } from '../../store/store';
 
 import './Details.scss';
+import { useGetDetailQuery } from '../../reducers/itemsApi';
 
 interface IDetailsProps {}
 
@@ -18,19 +19,34 @@ const Details: FC<IDetailsProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const data = useSelector((state: TRootState) => state.data.data);
 
+  const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
+  const detailsId =
+    numItem && data && data.items.length ? data.items[numItem - 1].data[0].nasa_id : null;
+  const { data: details, isLoading, isError } = useGetDetailQuery(detailsId);
+
   const handleClose = () => {
     searchParams.delete('details');
     setSearchParams(searchParams);
   };
 
-  const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
-
   if (!numItem) {
     return null;
   }
 
-  if (data === null) {
-    return <Loading />;
+  if (isError) {
+    return (
+      <div>
+        <h1>server`s error, try again later</h1>
+      </div>
+    );
+  }
+
+  if (isLoading || !data || !details) {
+    return (
+      <div className="details">
+        <Loading />;
+      </div>
+    );
   }
 
   const { items } = data;
@@ -38,9 +54,13 @@ const Details: FC<IDetailsProps> = () => {
 
   return (
     <div className="details">
+      <div className="details__overlay" onClick={handleClose}></div>
       <div className="details__pic">
         <ImageLoading
-          src={item.links[0].href.replace('thumb', 'medium')}
+          src={
+            details.items.filter((item) => item.href.includes('~medium'))[0]?.href ||
+            item.links[0].href
+          }
           alt={item.data[0].title}
           className="details__image"
         />

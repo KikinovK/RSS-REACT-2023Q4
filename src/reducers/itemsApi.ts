@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import constants from '../constants/constants';
-import { IData } from '../types/interface';
+import { IData, IDetail } from '../types/interface';
 
 const itemsApi = createApi({
   reducerPath: 'itemsApi',
@@ -20,9 +20,26 @@ const itemsApi = createApi({
         return null;
       },
     }),
+    getDetail: build.query({
+      query: (id: string | null) => {
+        if (typeof id !== 'string') {
+          return '';
+        }
+        return `asset/${id}`;
+      },
+      transformResponse: (response: IDetail) => {
+        if (response && 'collection' in response) {
+          return {
+            items: response.collection.items,
+          };
+        }
+
+        return null;
+      },
+    }),
   }),
 });
 
-export const { useGetItemsQuery } = itemsApi;
+export const { useGetItemsQuery, useGetDetailQuery } = itemsApi;
 
 export default itemsApi;
