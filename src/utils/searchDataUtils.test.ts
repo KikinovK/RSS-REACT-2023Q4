@@ -1,5 +1,3 @@
-// Пример использования Jest для тестирования функции, работающей с localStorage
-
 import { vi } from 'vitest';
 import { getSearchQueryFromLocalStorage, setSearchQueryToLocalStorage } from './searchDataUtils';
 

@@ -64,6 +64,7 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
           </li>
           <li className="paging__item">
             <Link
+              role="next"
               to={getPathLink(currentPage + 1, apiQuery)}
               className={`paging__link ${
                 currentPage >= totalPages ? 'paging__link--disabled' : ''

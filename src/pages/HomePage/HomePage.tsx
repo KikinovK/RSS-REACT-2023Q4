@@ -97,13 +97,11 @@ const HomePage = () => {
             <Outlet />
           </div>
         </div>
-        {data && searchParams.size && (
-          <Pagination
-            apiQuery={parseQueryString(
-              filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
-            )}
-          />
-        )}
+        <Pagination
+          apiQuery={parseQueryString(
+            filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
+          )}
+        />
       </Section>
       <ErrorButton />
     </>
