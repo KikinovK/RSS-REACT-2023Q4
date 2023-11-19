@@ -35,6 +35,7 @@ const Select: FC<ISelectProps> = ({ classNames, value, onSelected, options, ...r
   return (
     <div className="select__wrap">
       <select
+        role="combobox"
         value={value}
         onChange={handleChange}
         onClick={handleClick}
