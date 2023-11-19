@@ -35,3 +35,51 @@ it('updates URL query parameter on page change', () => {
 
   expect(linkElement.getAttribute('href')).toContain('?page=2&page_size=4');
 });
+
+it('returns null when data is null', () => {
+  const store = mockStore({
+    data: {
+      data: null,
+    },
+  });
+
+  const { container } = render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Pagination
+          apiQuery={[
+            { key: 'page', value: 1 },
+            { key: 'page_size', value: 4 },
+          ]}
+        />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  expect(container.firstChild).toBeNull();
+});
+
+it('returns null when currentPage is greater than totalPages', () => {
+  const store = mockStore({
+    data: {
+      data: {
+        totalHits: 40,
+      },
+    },
+  });
+
+  const { container } = render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Pagination
+          apiQuery={[
+            { key: 'page', value: 11 },
+            { key: 'page_size', value: 4 },
+          ]}
+        />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  expect(container.firstChild).toBeNull();
+});

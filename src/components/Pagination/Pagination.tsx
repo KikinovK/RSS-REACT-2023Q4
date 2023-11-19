@@ -42,7 +42,7 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
   if (data) {
     const totalPages = Math.ceil(data.totalHits / sizePage);
 
-    if (currentPage > totalPages && currentPage < 1) {
+    if (currentPage > totalPages || currentPage < 1) {
       return null;
     }
 
