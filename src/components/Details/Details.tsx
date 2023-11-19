@@ -21,7 +21,7 @@ const Details: FC<IDetailsProps> = () => {
 
   const numItem = parseInt(searchParams.get('details') ?? '', 10) || null;
   const detailsId =
-    numItem && data && data.items.length ? data.items[numItem - 1].data[0].nasa_id : null;
+    numItem && data && data?.items?.length ? data.items[numItem - 1].data[0].nasa_id : null;
   const { data: details, isLoading, isError } = useGetDetailQuery(detailsId);
 
   const handleClose = () => {

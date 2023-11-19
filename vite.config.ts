@@ -25,6 +25,5 @@ export default defineConfig({
       provider: 'v8',
       all: true,
     },
-    reporters: ['html'],
   },
 });

@@ -6,24 +6,22 @@ import mockData from '../../test/mockData';
 
 const mocks = vi.hoisted(() => {
   return {
-    useData: vi.fn(),
+    useSelector: vi.fn(),
   };
 });
 
-vi.mock('../DataProvider/DataProvider', () => {
+vi.mock('react-redux', () => {
   return {
-    useData: mocks.useData,
+    useSelector: mocks.useSelector,
   };
 });
 
 describe('ListCards Component', () => {
   it('renders the specified number of cards', () => {
     const { data } = mockData;
-
-    mocks.useData.mockReturnValue({ data });
+    mocks.useSelector.mockReturnValue(data);
 
     render(<ListCards onClickItem={() => {}} />);
-
     const cards = screen.getAllByRole('listitem');
     expect(cards).toHaveLength(data.items.length);
   });
@@ -33,7 +31,7 @@ describe('ListCards Component', () => {
       items: [],
     };
 
-    mocks.useData.mockReturnValue({ data });
+    mocks.useSelector.mockReturnValue(data);
 
     render(<ListCards onClickItem={() => {}} />);
 
@@ -44,7 +42,7 @@ describe('ListCards Component', () => {
   it('displays a message if error serve', () => {
     const data = null;
 
-    mocks.useData.mockReturnValue({ data });
+    mocks.useSelector.mockReturnValue(data);
 
     render(<ListCards onClickItem={() => {}} />);
 
@@ -55,7 +53,7 @@ describe('ListCards Component', () => {
   it('calls onClickItem with the right argument when an item is clicked', () => {
     const { data } = mockData;
 
-    mocks.useData.mockReturnValue({ data });
+    mocks.useSelector.mockReturnValue(data);
 
     const onClickItem = vi.fn();
     const { getAllByRole } = render(<ListCards onClickItem={onClickItem} />);
