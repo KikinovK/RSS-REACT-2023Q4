@@ -1,52 +1,44 @@
 import { useEffect } from 'react';
-import {
-  LoaderFunctionArgs,
-  Outlet,
-  useLoaderData,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Search from '../../components/Search/Search';
-import Section from '../../ui/Section/Section';
-import fetchData, { IReturnData } from '../../services/getItems';
 import ListCards from '../../components/ListCards/ListCards';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
+import Pagination from '../../components/Pagination/Pagination';
+import Section from '../../ui/Section/Section';
+
 import parseQueryString from '../../utils/parseQueryString';
 import generateQueryString from '../../utils/generateQueryString';
 import generateApiQuery from '../../utils/generateApiQuery';
-import Pagination from '../../components/Pagination/Pagination';
-import constants from '../../constants/constants';
 import filterQueryParams from '../../utils/filterQueryParams';
-import { useSearchQuery } from '../../components/SearchQueryProvider/SearchQueryProvider';
+import constants from '../../constants/constants';
+import { TRootState } from '../../store/store';
+import { setSearchQuery } from '../../reducers/searchReducer';
+import { setData } from '../../reducers/dataReducer';
 
 import './HomePage.scss';
-import { useData } from '../../components/DataProvider/DataProvider';
+import { useGetItemsQuery } from '../../reducers/itemsApi';
+import Loading from '../../components/Loading/Loading';
 
 export interface ILoaderParams {
   lineQuery: string;
 }
 
-export const loader = async (args: LoaderFunctionArgs): Promise<IReturnData | null> => {
-  const url = new URL(args.request.url);
-  if (url.search) {
-    const apiQuery = filterQueryParams(url.searchParams, constants.KEYS_PARAM).toString();
-    const data = await fetchData(apiQuery);
-    return data;
-  }
-  return null;
-};
-
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { searchQuery, setSearchQuery } = useSearchQuery();
-  const dataLoad = useLoaderData() as IReturnData | null;
-  const { setData } = useData();
+  const { data, isLoading, isError } = useGetItemsQuery(
+    filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
+  );
   const navigate = useNavigate();
+  const searchQuery = useSelector((state: TRootState) => state.search.searchQuery);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setData(dataLoad);
-  }, [dataLoad]);
+    if (data) {
+      dispatch(setData(data));
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!searchParams.size) {
@@ -56,14 +48,18 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    setSearchQuery(searchParams.get('q') || searchQuery);
+    const query = searchParams.get('q');
+
+    if (query && query != searchQuery) {
+      dispatch(setSearchQuery(query));
+    }
   }, [searchParams]);
 
   useEffect(() => {
     if (searchParams.size) {
       setSearchParams((prevSearchParams) => {
         prevSearchParams.set('q', searchQuery);
-        return filterQueryParams(prevSearchParams, constants.KEYS_PARAM);
+        return prevSearchParams;
       });
     }
   }, [searchQuery]);
@@ -74,6 +70,18 @@ const HomePage = () => {
       return prevSearchParams;
     });
   };
+
+  if (isError) {
+    return (
+      <div>
+        <h1>server`s error, try again later</h1>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -89,13 +97,11 @@ const HomePage = () => {
             <Outlet />
           </div>
         </div>
-        {dataLoad && searchParams.size && (
-          <Pagination
-            apiQuery={parseQueryString(
-              filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
-            )}
-          />
-        )}
+        <Pagination
+          apiQuery={parseQueryString(
+            filterQueryParams(searchParams, constants.KEYS_PARAM).toString()
+          )}
+        />
       </Section>
       <ErrorButton />
     </>

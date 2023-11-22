@@ -1,19 +1,23 @@
 import { ChangeEvent, FC, HTMLAttributes, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../../ui/Button/Button';
 import SearchIcon from './../../assets/search.svg?react';
-import { useSearchQuery } from '../SearchQueryProvider/SearchQueryProvider';
+
+import { TRootState } from '../../store/store';
+import { setSearchQuery } from '../../reducers/searchReducer';
 
 import './Search.scss';
 
 interface ISearchProps extends HTMLAttributes<HTMLElement> {}
 
 const Search: FC<ISearchProps> = () => {
-  const { searchQuery, setSearchQuery } = useSearchQuery();
+  const searchQuery = useSelector((state: TRootState) => state.search.searchQuery);
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
 
   const hendleClickButton = () => {
-    setSearchQuery(inputValue);
+    dispatch(setSearchQuery(inputValue));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

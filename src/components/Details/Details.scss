@@ -1,6 +1,8 @@
 .details {
   position: relative;
 
+  min-height: 40rem;
+
   padding: 2rem;
 
   border: 2px solid var(--color_base);
@@ -28,4 +30,12 @@
   height: auto;
   max-width: 100%;
   max-height: 100%;
+}
+
+.details__overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }

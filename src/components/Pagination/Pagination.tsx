@@ -1,14 +1,16 @@
 import { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import Select from '../../ui/Select/Select';
 import PrevIcon from './../../assets/prev.svg?react';
 import NextIcon from './../../assets/next.svg?react';
+
 import { paramApiType } from '../../types/interface';
 import generateQueryString from '../../utils/generateQueryString';
+import { TRootState } from '../../store/store';
 
 import './Pagination.scss';
-import Select from '../../ui/Select/Select';
-import { useData } from '../DataProvider/DataProvider';
 
 interface IPaginationProps {
   apiQuery: paramApiType[];
@@ -24,7 +26,7 @@ const getPathLink = (numberPage: number, apiQuery: paramApiType[]): string =>
   `/?${generateQueryString(changeValueToApiQuery(numberPage, 'page', apiQuery))}`;
 
 const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
-  const { data } = useData();
+  const data = useSelector((state: TRootState) => state.data.data);
   const navigate = useNavigate();
 
   const currentPage = (apiQuery.filter((item) => item.key === 'page')[0]?.value as number) || 1;
@@ -40,7 +42,7 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
   if (data) {
     const totalPages = Math.ceil(data.totalHits / sizePage);
 
-    if (currentPage > totalPages && currentPage < 1) {
+    if (currentPage > totalPages || currentPage < 1) {
       return null;
     }
 
@@ -62,6 +64,7 @@ const Pagination: FC<IPaginationProps> = ({ apiQuery }) => {
           </li>
           <li className="paging__item">
             <Link
+              role="next"
               to={getPathLink(currentPage + 1, apiQuery)}
               className={`paging__link ${
                 currentPage >= totalPages ? 'paging__link--disabled' : ''

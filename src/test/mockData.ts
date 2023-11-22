@@ -104,6 +104,63 @@ const mockData = {
         'https://images-assets.nasa.gov/image/ARC-2012-ACD12-0026-006/ARC-2012-ACD12-0026-006~medium.jpg',
     },
   },
+  details: {
+    status: 'fulfilled',
+    endpointName: 'getDetail',
+    requestId: 'UmY2U3ofj5fDtdltKE95W',
+    originalArgs: 'KSC-2011-2028',
+    startedTimeStamp: 1700351781849,
+    data: {
+      items: [
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~orig.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~large.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~medium.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~small.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~thumb.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/metadata.json',
+        },
+      ],
+    },
+    fulfilledTimeStamp: 1700351782662,
+    isUninitialized: false,
+    isLoading: false,
+    isSuccess: true,
+    isError: false,
+    currentData: {
+      items: [
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~orig.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~large.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~medium.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~small.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/KSC-2011-2028~thumb.jpg',
+        },
+        {
+          href: 'http://images-assets.nasa.gov/image/KSC-2011-2028/metadata.json',
+        },
+      ],
+    },
+    isFetching: false,
+  },
 };
 
 export default mockData;
