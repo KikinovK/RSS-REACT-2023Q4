@@ -5,21 +5,22 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import MainPage from '../pages/MainPage/MainPage';
 import UnControllFormPage from '../pages/UnControllFormPage/UnControllFormPage';
 import ControllFormPage from '../pages/ControllFormPage/ControllFormPage';
+import constants from '../constants/constants';
 
 const router = createBrowserRouter([
   {
     element: <PrimaryLayout />,
     children: [
       {
-        path: '/',
+        path: constants.PATH.MAIN,
         element: <MainPage />,
       },
       {
-        path: '/uncontrollform',
+        path: constants.PATH.UNCONTROL,
         element: <UnControllFormPage />,
       },
       {
-        path: '/controllform',
+        path: constants.PATH.CONTROL,
         element: <ControllFormPage />,
       },
       {
