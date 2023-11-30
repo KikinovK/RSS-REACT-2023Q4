@@ -1,0 +1,49 @@
+.btn {
+  padding: 0.2em 0.2em;
+
+  font-size: 1em;
+  font-weight: 500;
+
+  border-color: transparent;
+  background-color: transparent;
+
+
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.25s, transform 0.25s, border-color 0.25s;
+
+  &:hover {
+    color: var(--color_hover);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &:disabled {
+    color: var(--color_disabled);
+    pointer-events: none;
+  }
+
+  &.btn--submit {
+    padding: .6em 1em;
+    font-size: 2em;
+
+    border: 2px solid var(--color_base);
+    border-radius: var(--border_radius);
+
+    &:hover {
+      border-color: var(--color_hover);
+    }
+
+    &:disabled {
+      border-color: var(--color_disabled);
+    }
+  }
+
+  svg {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+}
