@@ -29,6 +29,16 @@ const UnControllFormPage: FC = () => {
       wrap: useRef<HTMLDivElement>(null),
       messageError: useRef<HTMLElement>(null),
     },
+    password: {
+      input: useRef<HTMLInputElement>(null),
+      wrap: useRef<HTMLDivElement>(null),
+      messageError: useRef<HTMLElement>(null),
+    },
+    passwordConfirm: {
+      input: useRef<HTMLInputElement>(null),
+      wrap: useRef<HTMLDivElement>(null),
+      messageError: useRef<HTMLElement>(null),
+    },
   };
 
   type TFormFieldName = keyof typeof formRefs;
@@ -121,6 +131,28 @@ const UnControllFormPage: FC = () => {
               label="Email"
               errorMessageRef={formRefs.email.messageError}
               wrapRef={formRefs.email.wrap}
+            />
+          </Grid>
+          <Grid item>
+            <FiledText
+              inputRef={formRefs.password.input}
+              name="password"
+              id="password"
+              label="Password"
+              type="password"
+              errorMessageRef={formRefs.password.messageError}
+              wrapRef={formRefs.password.wrap}
+            />
+          </Grid>
+          <Grid item>
+            <FiledText
+              inputRef={formRefs.passwordConfirm.input}
+              name="passwordConfirm"
+              id="passwordConfirm"
+              label="Confirm password"
+              type="password"
+              errorMessageRef={formRefs.passwordConfirm.messageError}
+              wrapRef={formRefs.passwordConfirm.wrap}
             />
           </Grid>
         </Grid>

@@ -9,6 +9,7 @@ interface IFiledTextProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessageRef: React.RefObject<HTMLElement>;
   wrapRef: React.RefObject<HTMLDivElement>;
   name: string;
+  type?: string;
   id: string;
   label?: string;
 }
@@ -18,6 +19,7 @@ const FiledText: FC<IFiledTextProps> = ({
   name,
   id,
   label = '',
+  type,
   errorMessageRef,
   wrapRef,
   ...restProps
@@ -41,7 +43,7 @@ const FiledText: FC<IFiledTextProps> = ({
         ref={inputRef}
         name={name}
         id={id}
-        type="text"
+        type={type || 'text'}
         className="filed__input"
         onFocus={handleFocus}
         onBlur={handleBlur}
