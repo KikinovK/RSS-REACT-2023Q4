@@ -24,6 +24,11 @@ const UnControllFormPage: FC = () => {
       wrap: useRef<HTMLDivElement>(null),
       messageError: useRef<HTMLElement>(null),
     },
+    email: {
+      input: useRef<HTMLInputElement>(null),
+      wrap: useRef<HTMLDivElement>(null),
+      messageError: useRef<HTMLElement>(null),
+    },
   };
 
   type TFormFieldName = keyof typeof formRefs;
@@ -106,6 +111,16 @@ const UnControllFormPage: FC = () => {
               label="Age"
               errorMessageRef={formRefs.age.messageError}
               wrapRef={formRefs.age.wrap}
+            />
+          </Grid>
+          <Grid item>
+            <FiledText
+              inputRef={formRefs.email.input}
+              name="email"
+              id="email"
+              label="Email"
+              errorMessageRef={formRefs.email.messageError}
+              wrapRef={formRefs.email.wrap}
             />
           </Grid>
         </Grid>

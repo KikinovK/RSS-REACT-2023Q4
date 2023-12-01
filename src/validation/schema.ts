@@ -11,8 +11,13 @@ const schema = Yup.object().shape({
     })
     .required('Name is required'),
   age: Yup.number()
-    .required('Age is required')
-    .positive('Age must be a positive number'),
+    .positive('Age must be a positive number')
+    .required('Age is required'),
+  email: Yup.string()
+    .trim()
+    .email('Enter a valid email (e.g., user@example.com)')
+    .matches(/^.+@.+\..+$/, 'Email address must contain a domain name')
+    .required('Email is required'),
 });
 
 export default schema;
