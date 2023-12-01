@@ -5,35 +5,27 @@ import './Filed.scss';
 interface IFiledProps {
   label?: string;
   id?: string;
-  isError?: boolean;
-  errorMessage?: string;
+  errorMessageRef: React.RefObject<HTMLElement>;
+  wrapRef: React.RefObject<HTMLDivElement>;
   children?: ReactNode;
-  isChildrenFocused?: boolean;
 }
 
 const Filed: FC<IFiledProps> = ({
   label,
   id,
-  isError = false,
-  errorMessage,
+  errorMessageRef,
+  wrapRef,
   children,
-  isChildrenFocused,
 }) => {
   return (
     <div className="filed">
       <label htmlFor={id} className="filed__label">
         {label}
       </label>
-      <div
-        className={`filed__wr ${isError && 'filed__wr--error'} ${
-          isChildrenFocused && 'filed__wr--focus'
-        }`}
-      >
+      <div ref={wrapRef} className="filed__wr">
         {children}
       </div>
-      <span className={`filed__error ${isError && 'filed__error--on'}`}>
-        {errorMessage}
-      </span>
+      <span ref={errorMessageRef} className={`filed__error`}></span>
     </div>
   );
 };
