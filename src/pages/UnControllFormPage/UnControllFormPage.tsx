@@ -7,9 +7,10 @@ import Section from '../../ui/Section/Section';
 import Button from '../../ui/Button/Button';
 import schema from '../../validation/schema';
 import FiledSelect from '../../ui/UnControll/FiledSelect/FiledSelect';
+import CheckBox from '../../ui/UnControll/CheckBox/CheckBox';
 
 interface IFormData {
-  [key: string]: string | number | undefined;
+  [key: string]: string | number | boolean | undefined;
 }
 
 const UnControllFormPage: FC = () => {
@@ -45,6 +46,11 @@ const UnControllFormPage: FC = () => {
       wrap: useRef<HTMLDivElement>(null),
       messageError: useRef<HTMLElement>(null),
     },
+    accept: {
+      input: useRef<HTMLInputElement>(null),
+      wrap: useRef<HTMLLabelElement>(null),
+      messageError: useRef<HTMLElement>(null),
+    },
   };
 
   type TFormFieldName = keyof typeof formRefs;
@@ -59,7 +65,20 @@ const UnControllFormPage: FC = () => {
     const formData: IFormData = {};
     Object.keys(formRefs).forEach((fieldName) => {
       const fieldNameTyped = fieldName as TFormFieldName;
-      formData[fieldNameTyped] = formRefs[fieldNameTyped].input.current?.value;
+      const inputElement = formRefs[fieldNameTyped].input.current;
+
+      if (inputElement) {
+        if (
+          inputElement instanceof HTMLInputElement &&
+          inputElement.type === 'checkbox'
+        ) {
+          formData[fieldNameTyped] = inputElement.checked;
+        } else {
+          formData[fieldNameTyped] = inputElement.value ?? '';
+        }
+      } else {
+        formData[fieldNameTyped] = '';
+      }
 
       const messageErrorRef = formRefs[fieldNameTyped].messageError;
       if (messageErrorRef && messageErrorRef.current) {
@@ -172,6 +191,16 @@ const UnControllFormPage: FC = () => {
                 { label: 'Male', value: 'male' },
                 { label: 'Female', value: 'female' },
               ]}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <CheckBox
+              inputRef={formRefs.accept.input}
+              name="accept"
+              label="By clicking 'Accept T&C', you agree to the terms and conditions governing the use of our services."
+              errorMessageRef={formRefs.accept.messageError}
+              wrapRef={formRefs.accept.wrap}
+              id="accept"
             />
           </Grid>
         </Grid>

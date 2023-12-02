@@ -48,6 +48,9 @@ const schema = Yup.object().shape({
     .oneOf([Yup.ref('password'), ''], 'Passwords must match')
     .required('Password confirmation is required'),
   gender: Yup.string().required('Gender is required'),
+  accept: Yup.boolean()
+    .required('You must accept the terms and conditions')
+    .oneOf([true], 'You must accept the terms and conditions'),
 });
 
 export default schema;
