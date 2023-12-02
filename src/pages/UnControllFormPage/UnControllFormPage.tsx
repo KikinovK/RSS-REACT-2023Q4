@@ -6,6 +6,7 @@ import FiledText from '../../ui/UnControll/FiledText/FiledText';
 import Section from '../../ui/Section/Section';
 import Button from '../../ui/Button/Button';
 import schema from '../../validation/schema';
+import FiledSelect from '../../ui/UnControll/FiledSelect/FiledSelect';
 
 interface IFormData {
   [key: string]: string | number | undefined;
@@ -36,6 +37,11 @@ const UnControllFormPage: FC = () => {
     },
     passwordConfirm: {
       input: useRef<HTMLInputElement>(null),
+      wrap: useRef<HTMLDivElement>(null),
+      messageError: useRef<HTMLElement>(null),
+    },
+    gender: {
+      input: useRef<HTMLSelectElement>(null),
       wrap: useRef<HTMLDivElement>(null),
       messageError: useRef<HTMLElement>(null),
     },
@@ -103,7 +109,7 @@ const UnControllFormPage: FC = () => {
       <h2>UnControllFormPage</h2>
       <form onSubmit={handleSubmit}>
         <Grid container>
-          <Grid item>
+          <Grid item sm={6}>
             <FiledText
               inputRef={formRefs.name.input}
               name="name"
@@ -113,7 +119,7 @@ const UnControllFormPage: FC = () => {
               wrapRef={formRefs.name.wrap}
             />
           </Grid>
-          <Grid item>
+          <Grid item sm={6}>
             <FiledText
               inputRef={formRefs.age.input}
               name="age"
@@ -123,7 +129,7 @@ const UnControllFormPage: FC = () => {
               wrapRef={formRefs.age.wrap}
             />
           </Grid>
-          <Grid item>
+          <Grid item sm={6}>
             <FiledText
               inputRef={formRefs.email.input}
               name="email"
@@ -133,7 +139,7 @@ const UnControllFormPage: FC = () => {
               wrapRef={formRefs.email.wrap}
             />
           </Grid>
-          <Grid item>
+          <Grid item sm={6}>
             <FiledText
               inputRef={formRefs.password.input}
               name="password"
@@ -144,7 +150,7 @@ const UnControllFormPage: FC = () => {
               wrapRef={formRefs.password.wrap}
             />
           </Grid>
-          <Grid item>
+          <Grid item sm={6}>
             <FiledText
               inputRef={formRefs.passwordConfirm.input}
               name="passwordConfirm"
@@ -153,6 +159,19 @@ const UnControllFormPage: FC = () => {
               type="password"
               errorMessageRef={formRefs.passwordConfirm.messageError}
               wrapRef={formRefs.passwordConfirm.wrap}
+            />
+          </Grid>
+          <Grid item sm={6}>
+            <FiledSelect
+              selectRef={formRefs.gender.input}
+              name="gender"
+              label="Gender"
+              errorMessageRef={formRefs.gender.messageError}
+              wrapRef={formRefs.gender.wrap}
+              options={[
+                { label: 'Male', value: 'male' },
+                { label: 'Female', value: 'female' },
+              ]}
             />
           </Grid>
         </Grid>
