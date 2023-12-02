@@ -1,19 +1,28 @@
 import { FC, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import * as Yup from 'yup';
 
 import Grid from '../../ui/Grid/Grid';
 import FiledText from '../../ui/UnControll/FiledText/FiledText';
 import Section from '../../ui/Section/Section';
 import Button from '../../ui/Button/Button';
-import schema from '../../validation/schema';
 import FiledSelect from '../../ui/UnControll/FiledSelect/FiledSelect';
 import CheckBox from '../../ui/UnControll/CheckBox/CheckBox';
 
+import { addData } from '../../reducers/dataReducer';
+import { IData } from '../../types/interface';
+import constants from '../../constants/constants';
+import schema from '../../validation/schema';
+
 interface IFormData {
-  [key: string]: string | number | boolean | undefined;
+  [key: string]: string | boolean | undefined;
 }
 
 const UnControllFormPage: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const formRefs = {
     name: {
@@ -91,6 +100,16 @@ const UnControllFormPage: FC = () => {
     });
     try {
       await schema.validate(formData, { abortEarly: false });
+      const data: IData = {
+        name: formData.name as string,
+        age: formData.age as string,
+        email: formData.email as string,
+        password: formData.password as string,
+        gender: formData.gender as 'male' | 'female',
+        accept: formData.accept as boolean,
+      };
+      dispatch(addData(data));
+      navigate(constants.PATH.MAIN);
     } catch (validationErrors) {
       const errorsByField: { [key: string]: string } = {};
 
