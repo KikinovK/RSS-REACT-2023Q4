@@ -36,7 +36,6 @@ const Select: FC<ISelectProps> = ({
 
   const handleChange = () => {
     arrowDown();
-    console.log('handleChange');
   };
 
   const handleFocus = (event: React.FocusEvent<HTMLSelectElement>) => {
