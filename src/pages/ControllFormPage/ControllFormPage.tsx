@@ -9,6 +9,7 @@ import { FormData } from '../../validation/schema';
 
 import schema from '../../validation/schema';
 import Button from '../../ui/Button/Button';
+import FiledSelect from '../../ui/Controll/FiledSelect/FiledSelect';
 
 const ControllFormPage: FC = () => {
   const {
@@ -73,11 +74,25 @@ const ControllFormPage: FC = () => {
             <FiledText
               register={register}
               name="passwordConfirm"
-              type="passwordConfirm"
+              type="password"
               id="passwordConfirm"
               label="Confirm password"
               isError={!!errors.passwordConfirm?.message}
               errorMessage={errors.passwordConfirm?.message}
+            />
+          </Grid>
+          <Grid item sm={6}>
+            <FiledSelect
+              register={register}
+              name="gender"
+              id="gender"
+              label="Gender"
+              isError={!!errors.gender?.message}
+              errorMessage={errors.gender?.message}
+              options={[
+                { label: 'Male', value: 'male' },
+                { label: 'Female', value: 'female' },
+              ]}
             />
           </Grid>
         </Grid>
