@@ -12,3 +12,13 @@ export interface IData {
   gender: 'male' | 'female';
   accept: boolean;
 }
+
+export interface IFormValues {
+  name: string;
+  age: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  gender: string;
+  accept: boolean;
+}

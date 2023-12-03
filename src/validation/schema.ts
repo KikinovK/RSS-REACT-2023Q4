@@ -54,3 +54,5 @@ const schema = Yup.object().shape({
 });
 
 export default schema;
+
+export type FormData = Yup.InferType<typeof schema>;
