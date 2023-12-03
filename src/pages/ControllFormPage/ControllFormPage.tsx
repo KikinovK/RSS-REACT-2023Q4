@@ -14,7 +14,7 @@ const ControllFormPage: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -38,7 +38,7 @@ const ControllFormPage: FC = () => {
             />
           </Grid>
         </Grid>
-        <Button type="submit" classNames={['btn--submit']}>
+        <Button type="submit" classNames={['btn--submit']} disabled={!isValid}>
           Submit
         </Button>
       </form>
