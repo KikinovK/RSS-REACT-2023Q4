@@ -171,6 +171,7 @@ const UnControllFormPage: FC = () => {
             <FiledText
               inputRef={formRefs.email.input}
               name="email"
+              type="email"
               id="email"
               label="Email"
               errorMessageRef={formRefs.email.messageError}
