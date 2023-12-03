@@ -22,7 +22,6 @@ const schema = Yup.object().shape({
     .required('Email is required'),
   password: Yup.string()
     .trim()
-    .min(8, 'Password should be of minimum 8 characters length')
     .test(
       'uppercase',
       'Password must include at least one uppercase letter (A-Z)',
@@ -43,6 +42,7 @@ const schema = Yup.object().shape({
       'Password must include at least one special character (!@#$%^&*)',
       (value) => value !== undefined && /[!@#$%^&*]/.test(value)
     )
+    .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
   passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password'), ''], 'Passwords must match')

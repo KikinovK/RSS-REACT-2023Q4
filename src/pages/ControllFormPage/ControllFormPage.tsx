@@ -10,6 +10,7 @@ import { FormData } from '../../validation/schema';
 import schema from '../../validation/schema';
 import Button from '../../ui/Button/Button';
 import FiledSelect from '../../ui/Controll/FiledSelect/FiledSelect';
+import CheckBox from '../../ui/Controll/CheckBox/CheckBox';
 
 const ControllFormPage: FC = () => {
   const {
@@ -93,6 +94,16 @@ const ControllFormPage: FC = () => {
                 { label: 'Male', value: 'male' },
                 { label: 'Female', value: 'female' },
               ]}
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <CheckBox
+              register={register}
+              name="accept"
+              label="By clicking 'Accept T&C', you agree to the terms and conditions governing the use of our services."
+              id="accept"
+              isError={!!errors.accept?.message}
+              errorMessage={errors.accept?.message}
             />
           </Grid>
         </Grid>
