@@ -1,18 +1,25 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Section from '../../ui/Section/Section';
 import Grid from '../../ui/Grid/Grid';
 import FiledText from '../../ui/Controll/FiledText/FiledText';
-import { FormData } from '../../validation/schema';
-
-import schema from '../../validation/schema';
 import Button from '../../ui/Button/Button';
 import FiledSelect from '../../ui/Controll/FiledSelect/FiledSelect';
 import CheckBox from '../../ui/Controll/CheckBox/CheckBox';
 
+import { FormData } from '../../validation/schema';
+import { IData } from '../../types/interface';
+import { addData } from '../../reducers/dataReducer';
+import schema from '../../validation/schema';
+import constants from '../../constants/constants';
+
 const ControllFormPage: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -22,7 +29,18 @@ const ControllFormPage: FC = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (formData: FormData) => {
+    const data: IData = {
+      name: formData.name,
+      age: formData.age.toString(),
+      email: formData.email,
+      password: formData.password,
+      gender: formData.gender as 'male' | 'female',
+      accept: formData.accept,
+    };
+    dispatch(addData(data));
+    navigate(constants.PATH.MAIN);
+  };
 
   return (
     <Section>
