@@ -1,0 +1,50 @@
+.select {
+  width: 100%;
+
+  padding: 0.2em 0.4em;
+
+  font-size: inherit;
+  text-align: left;
+
+  border: none;
+  cursor: pointer;
+  appearance: none;
+
+  &:hover + .select__icon {
+    color: var(--color_hover);
+  }
+
+  &:active + .select__icon {
+    transform: scale(.9);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.select__wrap {
+  position: relative;
+}
+
+.select__icon {
+  position: absolute;
+  top: .2em;
+  right: .6em;
+
+  display: block;
+  height: 1.2em;
+  width: 1em;
+
+  pointer-events: none;
+
+  transition: color 0.25s, transform 0.25s;
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.select__icon--up {
+  transform: rotate(180deg);
+}

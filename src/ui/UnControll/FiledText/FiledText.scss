@@ -1,0 +1,15 @@
+.filed__input {
+  width: 100%;
+
+  padding: .2em .4em;
+
+  font-size: inherit;
+
+  border: none;
+
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}

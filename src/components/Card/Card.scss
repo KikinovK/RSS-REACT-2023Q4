@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: .6em;
+
+  padding: 1rem;
+
+  border: 2px solid var(--color_base);
+  border-radius: var(--border_radius);
+
+  transition: color 3s;
+
+  &.card--new{
+    border-color: var(--color_hover);
+  }
+}
+
+.card__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1em;
+  row-gap: .2em;
+}
+
+.card__caption {
+  font-size: .8em;
+  font-style: italic;
+}
+
+.card__info {
+  font-weight: 700;
+}
