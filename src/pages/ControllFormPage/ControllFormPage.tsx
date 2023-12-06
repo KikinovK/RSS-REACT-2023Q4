@@ -71,7 +71,6 @@ const ControllFormPage: FC = () => {
             <FiledText
               register={register}
               name="email"
-              type="email"
               id="email"
               label="Email"
               isError={!!errors.email?.message}
