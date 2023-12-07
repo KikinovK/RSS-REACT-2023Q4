@@ -34,6 +34,10 @@ This is an example of how you can run a project locally. Follow these simple ste
    ```sh
    git clone https://github.com/KikinovK/RSS-REACT-2023Q4.git
    ```
+2. Go to branch
+   ```sh
+    git checkout routing
+   ```
 3. Install NPM packages
    ```sh
    npm install
