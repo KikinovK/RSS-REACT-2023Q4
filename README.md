@@ -2,7 +2,8 @@
 
 ## React. Components
 
-[Deployment Link:](https://kikinovk-components.netlify.app/)
+[Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/components)
+[Deployment Link](https://kikinovk-components.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
@@ -41,34 +42,37 @@ All logical parts should be set into separate components.MarkdownMarkdown
 
 ## React. Routing
 
-[Deployment Link:](https://kikinovk-routing.netlify.app/)
+[Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/routing)
+[Deployment Link](https://kikinovk-routing.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
 
-Create a separate branch for this task from the previous task's branch.
-All components must be changed to functional components, except Error Boundary components, as error boundaries in React still need to be class components.
-All logic should be split into components:
-If you need an access either to the component's lifecycle or the state use hooks.
-All data should be stored in the component's state.
-Add routing to your application using React Router.
-Add pagination:
-Implement pagination for your existing item list
-Display the current page in the browser URL using query parameters (e.g. ?page=2, e.g /search/2).
-The pagination component should appear after receiving the list of all items.
-If the user changes the number of items shown per page, make a new API call and display the results from the first page.
-Main page displays search results. On item click page should be split into 2 section:
-left section will continue to display search results;
-right section should display details using Router Outlet (show loading indicator while making an additional call for details, add control for closing the section, also section should be closed when user clicks on the left section)
-Reflect in the url that "Details" section has been opened for the selected item (e.g. /?frontpage=2&details=1).
+1. Create a separate branch for this task from the previous task's branch.
+2. All components must be changed to **functional components**, except **Error Boundary** components, as error boundaries in React still need to be class components.
+3. All logic should be split into components:
+   - If you need an access either to the component's lifecycle or the state **use hooks**.
+   - All data should be stored in the **component's state**.
+4. Add routing to your application using **React Router**.
+5. Add pagination:
+   - Implement pagination for your existing item list
+   - Display the current page in the browser URL using query parameters (e.g. ?page=2, e.g /search/2).
+   - The pagination component should appear after receiving the list of all items.
+   - If the user changes the number of items shown per page, make a new API call and display the results from the first page.
+6. Main page displays search results. On item click page should be split into 2 section:
+   - left section will continue to display search results;
+   - right section should display details using Router Outlet (show loading indicator while making an additional call for details, add control for closing the section, also section should be closed when user clicks on the left section)
+   - Reflect in the url that "Details" section has been opened for the selected item (e.g. /?frontpage=2&details=1).
 </details>
 
 ## React. Tests/Context API
 
-[Deployment Link:](https://kikinovk-context.netlify.app/)
+[Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/tests/context)
+[Deployment Link](https://kikinovk-context.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
+
 1. Create a separate branch for this task from the previous task's branch.
 2. Implement custom state management using the Context API.
    - Utilize the created context to store both the value entered in the Search component and the list of items received from the API;
@@ -98,13 +102,14 @@ Reflect in the url that "Details" section has been opened for the selected item 
 11. Lastly, update Husky to run tests on the pre-push hook, ensuring that tests are automatically executed before any code is pushed.
 </details>
 
-
-
 ## Redux. RTK.
-[Deployment Link:](https://kikinovk-redux.netlify.app/)
+
+[Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/redux)
+[Deployment Link](https://kikinovk-redux.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
+
 1. Create a separate branch for this task from the previous branch task.
 2. Redux Integration
    - Integrate Redux into your application. You'll need to set up the Redux store and reducers using Redux Toolkit.
@@ -119,15 +124,14 @@ Reflect in the url that "Details" section has been opened for the selected item 
    - Test the functionality related to Redux state and API calls.
 </details>
 
-
-
-
-
 ## React. Forms
-[Deployment Link:](https://https://kikinovk-form.netlify.app/)
+
+[Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/form)
+[Deployment Link](https://https://kikinovk-form.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
+
 1. Create a separate branch for this task, not based on previous ones.
 2. Language Requirement
    - Use **TypeScript** for the project.
@@ -170,69 +174,3 @@ Reflect in the url that "Details" section has been opened for the selected item 
     On successful form submission redirect user to the main route with all the previously entered data. Make an indication for a newly entered data on the main route (e.g. show border in a different color for a few seconds, or a different background color)
 
 </details>
-## Getting Started
-
-This is an example of how you can run a project locally. Follow these simple steps as an example.
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/KikinovK/RSS-REACT-2023Q4.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-### Running the Application
-
-To run the application, use the following command:
-```
-   npm start
-```
-
-
-### Code Formatting and Linting
-
-This project uses ESLint and Prettier for code formatting and linting. Husky is also configured to run pre-commit hooks to ensure code quality. Before committing changes, the pre-commit hooks will automatically format the code using Prettier and check for linting errors using ESLint.
-
-To format the code using Prettier manually, use the following command:
-```
-   npm run pretty
-```
-To run ESLint for TypeScript and TSX files, use the following command:
-```
-   npm run lint
-```
-
-### Testing
-
-To run tests, use the following command:
-```
-   npm run test
-```
-
-### Building the Project
-
-To create an optimized production build of the project, use the following command:
-```
-   npm run build
-```
-
-## Preview
-
-Before running the preview, make sure you have a production build ready by running the `npm run build`.
-
-To preview the build and see how the application works in production mode, use the following command:
-```
-   npm run preview
-```
-
-## Available Commands
-
-- `npm run format:fix`: To automatically fix Prettier formatting for TypeScript, TSX, and JSON files.
-- `npm run lint:fix`: To automatically fix ESLint errors for TypeScript and TSX files.
