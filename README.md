@@ -5,6 +5,7 @@
 
 <details>
   <summary>What should have been done:</summary>
+
 1. Create a separate branch for this task, not based on previous ones.
 2. Language Requirement
    - Use **TypeScript** for the project.
