@@ -123,7 +123,7 @@ Reflect in the url that "Details" section has been opened for the selected item 
 
 
 
-## Redux. RTK.
+## React. Forms
 [Deployment Link:](https://https://kikinovk-form.netlify.app/)
 
 <details>
