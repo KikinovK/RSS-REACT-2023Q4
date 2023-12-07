@@ -1,7 +1,7 @@
 # *The Rolling Scopes School React* course assignment
 
 ## React. Forms
-[Deployment Link:](https://https://kikinovk-form.netlify.app/)
+[Deployment Link](https://https://kikinovk-form.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
@@ -58,6 +58,10 @@ This is an example of how you can run a project locally. Follow these simple ste
 1. Clone the repo
    ```sh
    git clone https://github.com/KikinovK/RSS-REACT-2023Q4.git
+2. Go to branch
+   ```sh
+    git checkout form
+   ```
    ```
 3. Install NPM packages
    ```sh
@@ -103,8 +107,3 @@ To preview the build and see how the application works in production mode, use t
 ```
    npm run preview
 ```
-
-## Available Commands
-
-- `npm run format:fix`: To automatically fix Prettier formatting for TypeScript, TSX, and JSON files.
-- `npm run lint:fix`: To automatically fix ESLint errors for TypeScript and TSX files.
