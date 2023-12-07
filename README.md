@@ -71,7 +71,7 @@ This is an example of how you can run a project locally. Follow these simple ste
 
 To run the application, use the following command:
 ```
-   npm start
+   npm run dev
 ```
 
 
@@ -81,18 +81,11 @@ This project uses ESLint and Prettier for code formatting and linting. Husky is 
 
 To format the code using Prettier manually, use the following command:
 ```
-   npm run pretty
+   npm run fix
 ```
 To run ESLint for TypeScript and TSX files, use the following command:
 ```
    npm run lint
-```
-
-### Testing
-
-To run tests, use the following command:
-```
-   npm run test
 ```
 
 ### Building the Project
