@@ -48,6 +48,7 @@
     On successful form submission redirect user to the main route with all the previously entered data. Make an indication for a newly entered data on the main route (e.g. show border in a different color for a few seconds, or a different background color)
 
 </details>
+
 ## Getting Started
 
 This is an example of how you can run a project locally. Follow these simple steps as an example.
