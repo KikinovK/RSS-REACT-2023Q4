@@ -127,7 +127,7 @@ All logical parts should be set into separate components.MarkdownMarkdown
 ## React. Forms
 
 [Code Link](https://github.com/KikinovK/RSS-REACT-2023Q4/tree/form)
-[Deployment Link](https://https://kikinovk-form.netlify.app/)
+[Deployment Link](https://kikinovk-form.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
