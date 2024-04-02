@@ -1,7 +1,7 @@
 # *The Rolling Scopes School React* course assignment
 
 ## React. Forms
-[Deployment Link](https://https://kikinovk-form.netlify.app/)
+[Deployment Link](https://kikinovk-form.netlify.app/)
 
 <details>
   <summary>What should have been done:</summary>
